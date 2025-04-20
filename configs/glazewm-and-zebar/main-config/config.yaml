@@ -60,7 +60,9 @@ window_effects:
     # ** Exclusive to Windows 11 due to API limitations.
     border:
       enabled: true
-      color: '#8dbcff'
+      # color: '#8dbcff' # default
+      color: '#ffd08d'
+
 
     # Remove the title bar from the window's frame. Note that this can
     # cause rendering issues for some applications.
@@ -92,7 +94,7 @@ window_effects:
       enabled: false
       style: 'square'
     transparency:
-      enabled: true
+      enabled: false # it's bad for ignored windows
       opacity: '65%'
 
 window_behavior:
@@ -129,7 +131,7 @@ workspaces:
   - name: '4'
     bind_to_monitor: 1
   - name: '5'
-    bind_to_monitor: 0
+    bind_to_monitor: 1
   - name: '6'
     bind_to_monitor: 0
   - name: '7'
@@ -159,15 +161,19 @@ window_rules:
 
       # Supportive utils fix/ignore
       - window_process: { equals: 'Lightshot' }
+      - window_process: { equals: 'AmneziaVPN' }
+      - window_title: { regex: '^Friends List - .*$' }
+      - window_title: { regex: '.* - VMware Workstation$' }
 
   - commands: ["set-floating"]
     match:
       # VMware fix
-      - window_process: { regex: 'vmware\.exe$' }  # not sure
-      # - window_title: { regex: '.* - VMware Workstation$' }
+      - window_title: { regex: '.* - VMware Workstation$' }
+      # - window_process: { regex: 'vmware.*.exe$' } # nope
+      # - window_process: { regex: 'vmware\.exe$' }  # not sure
 
       # Steam incoming message weird fix
-      - window_title: { regex: '^Friends List - .*$' }
+      # - window_title: { regex: '^Friends List - .*$' }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
