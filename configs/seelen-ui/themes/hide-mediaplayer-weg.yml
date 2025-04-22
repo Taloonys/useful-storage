@@ -1,0 +1,11 @@
+id: "@custom/hide-mediaplayer"
+metadata:
+  displayName: Smart taskbar mediaplayer
+  author: FunTust
+  description: Hide dock/taskbar mediaplayer if it's empty.
+  tags: ['weg']
+styles:
+  weg: |
+    .media-session-container:has(.media-session-title-default) {
+      display: none !important;
+    }
